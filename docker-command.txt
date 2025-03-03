@@ -1,0 +1,86 @@
+IMAGES :
+1.List all Local images
+docker images
+2.Delete an image
+docker rmi <image_name>
+3.Remove unused images
+docker image prune
+4.Build an image from a Dockerfile
+docker build -t <image_name>:<version> . //version is optional
+docker build -t <image_name>:<version> . -no-cache //build without cache
+
+CONTAINER :
+5.List all Local containers (running & stopped)
+docker ps -a
+6.List all running containers
+docker ps
+7.Create & run a new container
+docker run <image_name>
+//if image not available locally, it’ll be downloaded from DockerHub
+8.Run container in background
+docker run -d <image_name>
+9.Run container with custom name
+docker run - -name <container_name> <image_name>Port Binding in container
+docker run -p<host_port>:<container_port> <image_name>
+10.Set environment variables in a container
+docker run -e <var_name>=<var_value> <container_name> (or <container_id)
+11.Start or Stop an existing container
+docker start|stop <container_name> (or <container_id)
+12.Inspect a running container
+docker inspect <container_name> (or <container_id)
+13.Delete a container
+docker rm <container_name> (or <container_id)
+
+TROUBLESHOOT :
+14.Fetch logs of a container
+docker logs <container_name> (or <container_id)
+15.Open shell inside running container
+docker exec -it <container_name> /bin/bash
+docker exec -it <container_name> sh
+
+DOCKER HUB :
+16.Pull an image from DockerHub
+docker pull <image_name>
+17.Publish an image to DockerHub
+docker push <username>/<image_name>Login into DockerHub
+docker login -u <image_name>
+Or
+18.docker login
+//also, docker logout to remove credentials
+19.Search for an image on DockerHub
+docker search <image_name>
+
+VOLUMES :
+20.List all Volumes
+docker volume ls
+21.Create new Named volume
+docker volume create <volume_name>
+22.Delete a Named volume
+docker volume rm <volume_name>
+23.Mount Named volume with running container
+docker run - -volume <volume_name>:<mount_path>
+//or using - -mount
+docker run - -mount type=volume,src=<volume_name>,dest=<mount_path>
+24.Mount Anonymous volume with running container
+docker run - -volume <mount_path>
+25.To create a Bind Mount
+docker run - -volume <host_path>:<container_path>
+//or using - -mount
+docker run - -mount type=bind,src=<host_path>,dest=<container_path>
+26.Remove unused local volumes
+docker volume prune //for anonymous volumesNETWORK :
+27.List all networks
+docker network ls
+28.Create a network
+docker network create <network_name>
+29.Remove a network
+docker network rm <network_name>
+30.Remove all unused networks
+docker network prun
+
+DOCKER COMPOSE:
+
+31.create a container from yaml file
+docker compose -f fileName.yaml up -d (detach mode running into background)
+32.delete a container
+docker compose -f fileName.yaml down
